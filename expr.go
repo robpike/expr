@@ -155,7 +155,7 @@ func isDigit(c byte) bool {
 	return '0' <= c && c <= '9'
 }
 
-// isAlpha reports whether byte is an alphebetic or underscore or,
+// isAlpha reports whether byte is an alphabetic or underscore or,
 // if digitOK is true, a digit.
 func isAlpha(c byte, digitOK bool) bool {
 	if 'a' <= c && c <= 'z' || 'A' <= c && c <= 'Z' || c == '_' {
@@ -200,8 +200,8 @@ func (p *parser) remaining() string {
 }
 
 // parse implements a production in the expression parse hierarchy. Singles and
-// doubles are strings holding the operators that are available at at this precedence
-// level, while nextLevel implements the next higher precendence level.
+// doubles are strings holding the operators that are available at this precedence
+// level, while nextLevel implements the next higher precedence level.
 func (p *parser) parse(singles, doubles string, nextLevel func(*parser) *Expr) *Expr {
 	e := nextLevel(p)
 	for {
@@ -220,12 +220,12 @@ func (p *parser) parse(singles, doubles string, nextLevel func(*parser) *Expr) *
 	}
 }
 
-// orlist = andList | andList '||' orList.
+// orList = andList | andList '||' orList.
 func orList(p *parser) *Expr {
 	return p.parse("", "||", andList)
 }
 
-// andlist = cmpList | cmpList '&&' andList.
+// andList = cmpList | cmpList '&&' andList.
 func andList(p *parser) *Expr {
 	return p.parse("", "&&", cmpList)
 }
